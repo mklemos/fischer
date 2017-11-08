@@ -3,7 +3,6 @@
 import socket
 import time
 import secrets
-from format_filename_time import get_datetime_path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
