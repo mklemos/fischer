@@ -35,3 +35,22 @@ def driver_setup():
         return driver
 
 
+def fischer_login(driver, user_name):
+    #Go to idm login
+    driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
+
+    #input User
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='loginform:userid']"))).send_keys(str(user_name))
+    #input Password
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='loginform:password']"))).send_keys(secrets.userpass[str(user_name)])
+    #click sign in
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='loginform:loginButton']"))).click()
+    #Sleep for a second to let sign in do its thing
+    time.sleep(1)
+
+
+def fischer_logout(driver):
+    #Signout
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[@name='bannerform:logoutlink']"))).click()
+    #Sleep for a second to let singout happen
+    time.sleep(1)
