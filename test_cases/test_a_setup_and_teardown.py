@@ -16,28 +16,31 @@ class test_a_setup_and_teardown(unittest.TestCase):
         driver = setup_login.driver_setup()
         self.driver = driver
 
-    def test_a_site(self):
-        driver = self.driver
+    def test_a_Site(self):
         #Go to idm-dev login but dont actualy login
         self.driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
 
+    def test_b_LoginLogout(self):
+        try:
+            #try to signin
+            setup_login.fischer_login(self.driver, "cnn71")
+        except:
+            #login failed, lets take a screenshot
+            #TODO: Screenshot
+            #Fail the test
+            assert 2 ==1
+
+        try:
+            #try to signout
+            setup_login.fischer_logout(self.driver)
+        except:
+            #logout failed, lets take a screenshot
+            #TODO: Screenshot
+            #Fail the test
+            assert 2 ==1
+
+
     def tearDown(self):
         # close the browser window
         self.driver.quit()
 
-
-class test_b_login_and_logout(unittest.TestCase):
-
-    def setUp(self):
-        driver = setup_login.driver_setup()
-        self.driver = driver
-
-    def test_a_login(self):
-        #sign in using sign in abstraction
-        setup_login.fischer_login(self.driver, "cnn71")
-
-    def tearDown(self):
-        #signout
-        setup_login.fischer_logout(self.driver)
-        # close the browser window
-        self.driver.quit()

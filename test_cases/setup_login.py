@@ -44,7 +44,7 @@ def fischer_login(driver, user_name):
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='loginform:password']"))).send_keys(secrets.userpass[str(user_name)])
     #click sign in
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='loginform:loginButton']"))).click()
-    #Sleep for a second to let sign in do its thing
+    #Sleep for a second
     time.sleep(1)
 
 
