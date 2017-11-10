@@ -11,3 +11,5 @@ def gotoRequestAccess(driver):
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Requests')]"))).click()
     #Click on the Request Access tab
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Request Access')]"))).click()
+    #include self checked off
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//label[contains(text(),'Include Self')]"))).click()
