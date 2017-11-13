@@ -4,6 +4,7 @@ import time
 import os.path
 import socket
 import setup_login
+import dashboard_navigate
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -23,12 +24,20 @@ class test_a_setup_and_teardown(unittest.TestCase):
     def test_b_LoginLogout(self):
         try:
             #try to signin
-            setup_login.fischer_login(self.driver, "cnn71")
+            setup_login.fischer_login(self.driver, "sls1231")
         except:
             #login failed, lets take a screenshot
             #TODO: Screenshot
             #Fail the test
             assert 2 ==1
+
+        dashboard_navigate.gotoRequestAccess(self.driver)
+
+        dashboard_navigate.selectIncludeSelf(self.driver)
+        
+        dashboard_navigate.selectDropdownOption(self.driver, "0,1")
+
+        time.sleep(5)
 
         try:
             #try to signout

@@ -27,7 +27,7 @@ def driver_setup():
         driver.set_window_size(1920,1080)
 
         return driver
-
+    
     else:
         driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities=DesiredCapabilities.FIREFOX) #dw-autotest-dev or localhost
 
@@ -50,6 +50,6 @@ def fischer_login(driver, user_name):
 
 def fischer_logout(driver):
     #Signout
-    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[@name='bannerform:logoutlink']"))).click()
+    WebDriverWait(driver, 60).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[@name='bannerform:logoutlink']"))).click()
     #Sleep for a second to let singout happen
     time.sleep(1)
