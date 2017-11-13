@@ -11,6 +11,7 @@ def gotoRequestAccess(driver):
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Requests')]"))).click()
     #Click on the Request Access tab
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Request Access')]"))).click()
+<<<<<<< HEAD
 
 def selectIncludeSelf(driver):
     #Click on include self checkbox
@@ -22,3 +23,7 @@ def selectDropdownOption(driver, optionvalue):
     xpathend = "']"
     #click on an option via our created xpath
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optionvalue +  xpathend))).click()
+=======
+    #include self checked off
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//label[contains(text(),'Include Self')]"))).click()
+>>>>>>> 9a12fe8514a000b03bd753da33de7bf110c0d7af

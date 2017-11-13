@@ -52,4 +52,3 @@ class test_a_setup_and_teardown(unittest.TestCase):
     def tearDown(self):
         # close the browser window
         self.driver.quit()
-

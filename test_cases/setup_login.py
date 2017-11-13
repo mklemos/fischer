@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions
 # Driver_setup was created for the OBI autotest project by Maximilian Lemos
 def driver_setup():
     server_hostname = "dwdb2-dev.humboldt.edu"
-    
+
     if socket.gethostname() == server_hostname:
         # driver = webdriver.Remote(command_executor='http://dw-autotest-dev:4444/wd/hub', desired_capabilities=DesiredCapabilities.FIREFOX) #dw-autotest-dev or localhost
         dcap = dict(DesiredCapabilities.PHANTOMJS)
