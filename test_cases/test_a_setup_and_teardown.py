@@ -35,9 +35,11 @@ class test_a_setup_and_teardown(unittest.TestCase):
 
         dashboard_navigate.selectIncludeSelf(self.driver)
         
-        dashboard_navigate.selectDropdownOption(self.driver, "Network Folder")
+        dashboard_navigate.selectDropdownOption(self.driver, "Official website")
 
-        time.sleep(5)
+        dashboard_navigate.selectDropdownOption(self.driver, "Create website")
+
+        time.sleep(10)
 
         try:
             #try to signout
