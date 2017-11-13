@@ -35,7 +35,7 @@ class test_a_setup_and_teardown(unittest.TestCase):
 
         dashboard_navigate.selectIncludeSelf(self.driver)
         
-        dashboard_navigate.selectDropdownOption(self.driver, "0,1")
+        dashboard_navigate.selectDropdownOption(self.driver, "Network Folder")
 
         time.sleep(5)
 

@@ -16,9 +16,9 @@ def selectIncludeSelf(driver):
     #Click on include self checkbox
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='selectUserFormRequestAccess:addself']"))).click()
 
-def selectDropdownOption(driver, optionvalue):
+def selectDropdownOption(driver, optioncontains):
     
-    xpathstart = "//option[@value='"
-    xpathend = "']"
+    xpathstart = "//option[contains(text(),'"
+    xpathend = "')]"
     #click on an option via our created xpath
-    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optionvalue +  xpathend))).click()
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
