@@ -6,6 +6,7 @@ import socket
 import setup_login
 import secrets
 import dashboard_navigate
+from network_folder import network_folder_check
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -23,7 +24,9 @@ class test_initial_steps(unittest.TestCase):
         driver = self.driver
         #self.driver.implicitly_wait(7) # seconds
         self.driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
-
         setup_login.fischer_login(driver, "kmk877")
         dashboard_navigate.gotoRequestAccess(driver)
+        dashboard_navigate.selectIncludeSelf(driver)
+        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
+        network_folder_check(driver)
         assert True
