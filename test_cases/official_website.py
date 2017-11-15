@@ -11,7 +11,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-offical_websiteList = ["Create website","Add a developer","Create MySQL accounts","Reset website permissions"]
+offical_websiteList = ["Create website", "Add a developer", "Create MySQL accounts", "Reset website permissions"]
 
 
 def official_websiteCheck(driver):
