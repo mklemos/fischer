@@ -9,6 +9,7 @@ import dashboard_navigate
 from network_folder import network_folder_check
 from personal_website import personal_website_check
 from departmental_email_account import departmental_email_account_check
+from it_admin import it_admin_check
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -41,4 +42,7 @@ class test_initial_steps(unittest.TestCase):
 
         dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
         departmental_email_account_check(driver)
+
+        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
+        it_admin_check(driver)
         assert True
