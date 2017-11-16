@@ -4,10 +4,10 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-folder_list = ["Personal website - MySQL",
+folder_list = ["Departmental Email Account",
                ]
 
-def personal_website_check(driver):
+def departmental_email_account_check(driver):
         xpathstart = "//*[contains(text(),"
         xpathend = ")]"
         for i in folder_list:
