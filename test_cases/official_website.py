@@ -5,13 +5,14 @@ import os.path
 import socket
 import setup_login
 import dashboard_navigate
+from treelib import Node, Tree
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-offical_websiteList = ["Create website", "Add a developer", "Create MySQL accounts", "Reset website permissions"]
+offical_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Create MySQL accounts":["MySQL Account - Prod", "MySQL Account - Dev Server"], "Reset website permissions":["Production Website - Permission Reset"]}
 
 
 def official_websiteCheck(driver):
@@ -26,11 +27,15 @@ def official_websiteCheck(driver):
             #We cant find offical website so something is broken
             assert 2 == 1
 
-        for permision in offical_websiteList:
+        for permision in offical_websiteDict:
             
             try:
                 #Try to select permison
                 dashboard_navigate.selectDropdownOption(driver, permision)
+                for label in offical_websiteDict[permision]:
+                    xpathstart = "//label[contains(text(),'"
+                    xpathend = "')]"
+                    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
             except:
                 #We cant find permison in dropdown so fail the test
                 assert 2 == 1
