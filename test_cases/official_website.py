@@ -52,10 +52,12 @@ class test_c_Test(unittest.TestCase):
         setup_login.fischer_login(self.driver, "sls1231")
 
     def test_c_Test(self):
+        dashboard_navigate.gotoRequestAccess(self.driver)
+        dashboard_navigate.selectIncludeSelf(self.driver)
 
-       dashboard_navigate.gotoRequestAccess(self.driver)
-       dashboard_navigate.selectIncludeSelf(self.driver)
-       official_websiteCheck(self.driver, "non-employee")
+        dashboard_navigate.selectDropdownOption(self.driver, "Official website")
+
+        official_websiteCheck(self.driver, "non-employee")
 
 
     def tearDown(self):
