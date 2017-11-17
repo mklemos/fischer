@@ -39,7 +39,7 @@ class test_employeeUsernameATIUsername_kmk877(unittest.TestCase):
         network_folder_check(driver)
 
         dashboard_navigate.selectDropdownOption(driver, "Official website")
-        official_websiteCheck(driver)
+        official_websiteCheck(driver, "employee-ati")
 
 
     def tearDown(self):

@@ -39,7 +39,7 @@ class test_employee_ATI_WebAlias_Library(unittest.TestCase):
         network_folder_check(driver)
 
         dashboard_navigate.selectDropdownOption(driver, "Official website")
-        official_websiteCheck(driver)
+        official_websiteCheck(driver, "employee-ati")
 
         dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
         departmental_email_account_check(driver)

@@ -6,7 +6,7 @@ import socket
 import setup_login
 import secrets
 import dashboard_navigate
-from official_website import non_employee_websiteDict_Check
+from official_website import official_websiteCheck
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -32,4 +32,4 @@ class test_Non_Employee_ATI_wwh36(unittest.TestCase):
 
         # Select from the dropdown options under "Select resources and permissions"
         dashboard_navigate.selectDropdownOption(driver, "Official website")
-        non_employee_websiteDict_Check(driver)
+        official_websiteCheck(driver, "non-employee")
