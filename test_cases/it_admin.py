@@ -11,8 +11,9 @@ folder_list = ["Google Apps - Admin",
                ]
 
 def it_admin_check(driver):
-        xpathstart = "//*[contains(text(),"
-        xpathend = ")]"
-        for i in folder_list:
-            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart +"'"+ i +"'"+ xpathend))).text
-        return i
+        for label in folder_list:
+            #Build xpath
+            xpathstart = "//label[contains(text(),'"
+            xpathend = "')]"
+            #Run contains check using thestring of the label getting it from the dictionary
+            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
