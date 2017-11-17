@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions
 
 def gotoRequestAccess(driver):
     #Click on the requests tab
-    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Requests')]"))).click()
+    WebDriverWait(driver, 60).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Requests')]"))).click()
     #Click on the Request Access tab
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),'Request Access')]"))).click()
 
