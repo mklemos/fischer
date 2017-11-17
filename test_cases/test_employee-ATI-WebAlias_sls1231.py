@@ -44,12 +44,14 @@ class test_employee_ATI_WebAlias_sls1231(unittest.TestCase):
         dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
         departmental_email_account_check(driver)
 
+        dashboard_navigate.selectDropdownOption(driver, "Personal website")
+        personal_website_check(driver)
+
         #maybe doesn't belong here?
         dashboard_navigate.selectDropdownOption(driver,"IT Admin")
         it_admin_check(driver)
 
-        dashboard_navigate.selectDropdownOption(driver, "Personal website")
-        personal_website_check(driver)
+
 
     def tearDown(self):
         #log out
