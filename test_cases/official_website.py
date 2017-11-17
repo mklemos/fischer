@@ -5,7 +5,6 @@ import os.path
 import socket
 import setup_login
 import dashboard_navigate
-from treelib import Node, Tree
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -14,21 +13,23 @@ from selenium.webdriver.support import expected_conditions
 
 offical_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Create MySQL accounts":["MySQL Account - Prod", "MySQL Account - Dev Server"], "Reset website permissions":["Production Website - Permission Reset"]}
 
+non_employee_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Reset website permissions":["Production Website - Permission Reset"]}
+
 
 def official_websiteCheck(driver):
-        dashboard_navigate.gotoRequestAccess(driver)
-
-        dashboard_navigate.selectIncludeSelf(driver)
-
-        try:
-            #Try to select offical website
-            dashboard_navigate.selectDropdownOption(driver, "Official website")
-        except:
-            #We cant find offical website so something is broken
-            assert 2 == 1
+        # dashboard_navigate.gotoRequestAccess(driver)
+        #
+        # dashboard_navigate.selectIncludeSelf(driver)
+        #
+        # try:
+        #     #Try to select offical website
+        #     dashboard_navigate.selectDropdownOption(driver, "Official website")
+        # except:
+        #     #We cant find offical website so something is broken
+        #     assert 2 == 1
 
         for permision in offical_websiteDict:
-            
+
             try:
                 #Try to select permison
                 dashboard_navigate.selectDropdownOption(driver, permision)
@@ -40,6 +41,20 @@ def official_websiteCheck(driver):
                 #We cant find permison in dropdown so fail the test
                 assert 2 == 1
 
+def non_employee_websiteDict_Check(driver):
+       # added this function so that non-employee types could have access to a sub-dictionary
+        for permision in non_employee_websiteDict:
+
+            try:
+                #Try to select permison
+                dashboard_navigate.selectDropdownOption(driver, permision)
+                for label in non_employee_websiteDict[permision]:
+                    xpathstart = "//label[contains(text(),'"
+                    xpathend = "')]"
+                    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
+            except:
+                #We cant find permison in dropdown so fail the test
+                assert 2 == 1
 
 
 class test_c_Test(unittest.TestCase):

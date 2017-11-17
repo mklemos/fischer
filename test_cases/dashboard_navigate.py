@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import socket
 import time
 from selenium import webdriver
@@ -17,7 +18,7 @@ def selectIncludeSelf(driver):
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name='selectUserFormRequestAccess:addself']"))).click()
 
 def selectDropdownOption(driver, optioncontains):
-    
+
     xpathstart = "//option[contains(text(),'"
     xpathend = "')]"
     #click on an option via our created xpath

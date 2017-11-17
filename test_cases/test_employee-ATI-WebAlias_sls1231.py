@@ -18,13 +18,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
-class test_initial_steps(unittest.TestCase):
+class test_employee_ATI_WebAlias_sls1231(unittest.TestCase):
 
     def setUp(self):
         driver = setup_login.driver_setup()
         self.driver = driver
 
-    def test_initial_steps(self):
+    def test_employee_ATI_WebAlias_sls1231(self):
         # Set drivers from selenium framework
         driver = self.driver
         self.driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
@@ -44,6 +44,7 @@ class test_initial_steps(unittest.TestCase):
         dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
         departmental_email_account_check(driver)
 
+        #maybe doesn't belong here?
         dashboard_navigate.selectDropdownOption(driver,"IT Admin")
         it_admin_check(driver)
 

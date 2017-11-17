@@ -5,10 +5,12 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-folder_list = ["Personal website - MySQL",
+folder_list = ["Google Apps - Admin",
+               "Active Directory - Admin",
+               "LDAP bnd Account",
                ]
 
-def personal_website_check(driver):
+def it_admin_check(driver):
         xpathstart = "//*[contains(text(),"
         xpathend = ")]"
         for i in folder_list:
