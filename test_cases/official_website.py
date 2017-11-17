@@ -15,55 +15,31 @@ offical_websiteDict = {"Create website":["Official website"], "Add a developer":
 
 non_employee_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Reset website permissions":["Production Website - Permission Reset"]}
 
+def getPermisionDict(usertype):
+    usertype = str(usertype).lower()
+    if usertype == "employee-ati":
+        return offical_websiteDict
+    elif usertype == "non-employee":
+        return non_employee_websiteDict
 
-def official_websiteCheck(driver):
-        try:
-            #Try to select offical website
-            dashboard_navigate.selectDropdownOption(driver, "Official website")
-        except:
-            #We cant find offical website so something is broken
-            assert 2 == 1
+def official_websiteCheck(driver, usertype):
 
-        for permision in offical_websiteDict:
+    Web_dict = getPermisionDict(usertype)
 
-            try:
-                #Try to select permison
-                dashboard_navigate.selectDropdownOption(driver, permision)
-                #Make sure each label exists on the page once we select the permision if the permison has labels
-                for label in offical_websiteDict[permision]:
-                    #Build xpath
-                    xpathstart = "//label[contains(text(),'"
-                    xpathend = "')]"
-                    #Run contains check using thestring of the label getting it from the dictionary
-                    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
-            except:
-                #We cant find permison in dropdown so fail the test
-                assert 2 == 1
+    #Try to select offical website
+    #dashboard_navigate.selectDropdownOption(driver, "Official website")
+    #For each permison(Option)
+    for permision in Web_dict:  
+        #Try to select permison
+        dashboard_navigate.selectDropdownOption(driver, permision)
+        #Make sure each label exists on the page once we select the permision if the permison has labels
+        for label in Web_dict[permision]:
+            #Build xpath
+            xpathstart = "//label[contains(text(),'"
+            xpathend = "')]"
+            #Run contains check using thestring of the label getting it from the dictionary
+            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
 
-def non_employee_websiteDict_Check(driver):
-       # added this function so that non-employee types could have access to a sub-dictionary
-        try:
-            #Try to select offical website
-            dashboard_navigate.selectDropdownOption(driver, "Official website")
-        except:
-            #We cant find offical website so something is broken
-            assert 2 == 1
-
-        for permision in non_employee_websiteDict:
-
-            try:
-                #Try to select permison
-                dashboard_navigate.selectDropdownOption(driver, permision)
-                #Make sure each label exists on the page once we select the permision if the permison has labels
-                for label in offical_websiteDict[permision]:
-                    #Build xpath
-                    xpathstart = "//label[contains(text(),'"
-                    xpathend = "')]"
-                    #Run contains check using thestring of the label getting it from the dictionary
-                    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
-            except:
-                #We cant find permison in dropdown so fail the test
-                assert 2 == 1
 
 
 class test_c_Test(unittest.TestCase):
@@ -79,7 +55,7 @@ class test_c_Test(unittest.TestCase):
 
        dashboard_navigate.gotoRequestAccess(self.driver)
        dashboard_navigate.selectIncludeSelf(self.driver)
-       official_websiteCheck(self.driver)
+       official_websiteCheck(self.driver, "non-employee")
 
 
     def tearDown(self):
