@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import dashboard_navigate
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -7,10 +8,13 @@ from selenium.webdriver.support import expected_conditions
 
 folder_list = ["Google Apps - Admin",
                "Active Directory - Admin",
-               "LDAP bnd Account",
+               "LDAP Service Account",
                ]
 
 def it_admin_check(driver):
+        #Go to IT Admin dropdown and click on it
+        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
+
         for label in folder_list:
             #Build xpath
             xpathstart = "//label[contains(text(),'"
