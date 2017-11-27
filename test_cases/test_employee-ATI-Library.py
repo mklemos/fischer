@@ -35,11 +35,10 @@ class test_test_employee_ATI_Library(unittest.TestCase):
         dashboard_navigate.selectIncludeSelf(driver)
 
         # Select from the dropdown options under "Select resources and permissions"
-        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
+
         network_folder_check(driver)
 
-        dashboard_navigate.selectDropdownOption(driver, "Official website")
-        official_websiteCheck(driver)
+        official_websiteCheck(driver, "employee-ati")
 
 
     def tearDown(self):
