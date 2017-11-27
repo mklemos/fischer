@@ -3,8 +3,8 @@ import unittest
 import time
 import os.path
 import socket
-import setup_login
 import secrets
+import setup_login
 import dashboard_navigate
 from network_folder import network_folder_check
 from personal_website import personal_website_check
