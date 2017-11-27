@@ -13,7 +13,7 @@ folder_list = ["Google Apps - Admin",
 
 def it_admin_check(driver):
     #Go to IT Admin dropdown and click on it
-    dashboard_navigate.selectDropdownOption(driver,"IT Admin")
+    dashboard_navigate.selectDropdownOption(driver, "IT Admin")
 
     for label in folder_list:
         #Build xpath
