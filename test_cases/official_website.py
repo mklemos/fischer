@@ -26,6 +26,9 @@ def official_websiteCheck(driver, usertype):
 
     Web_dict = getPermisionDict(usertype)
 
+    #Navigate to "Ofical website"
+    dashboard_navigate.selectDropdownOption(driver, "Official website")
+
     #Try to select offical website
     #dashboard_navigate.selectDropdownOption(driver, "Official website")
     #For each permison(Option)
@@ -37,6 +40,7 @@ def official_websiteCheck(driver, usertype):
             #Build xpath
             xpathstart = "//label[contains(text(),'"
             xpathend = "')]"
+            time.sleep(1)
             #Run contains check using thestring of the label getting it from the dictionary
             WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
 
