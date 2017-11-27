@@ -32,7 +32,7 @@ def official_websiteCheck(driver, usertype):
     #Try to select offical website
     #dashboard_navigate.selectDropdownOption(driver, "Official website")
     #For each permison(Option)
-    for permision in Web_dict:  
+    for permision in Web_dict:
         #Try to select permison
         dashboard_navigate.selectDropdownOption(driver, permision)
         #Make sure each label exists on the page once we select the permision if the permison has labels
