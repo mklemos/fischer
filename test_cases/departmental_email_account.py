@@ -11,7 +11,7 @@ folder_list = ["Departmental Email Account",
 
 def departmental_email_account_check(driver):
     #Navgate to deparment email by selecting it as a dropdown option
-    dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
+    dashboard_navigate.selectDropdownOption(driver, "Departmental Email Account")
 
     xpathstart = "//label[contains(text(),"
     xpathend = ")]"
