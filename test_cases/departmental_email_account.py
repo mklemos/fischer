@@ -10,10 +10,10 @@ folder_list = ["Departmental Email Account",
                ]
 
 def departmental_email_account_check(driver):
-        #Navgate to deparment email by selecting it as a dropdown option
-        dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
+    #Navgate to deparment email by selecting it as a dropdown option
+    dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
 
-        xpathstart = "//label[contains(text(),"
-        xpathend = ")]"
-        for i in folder_list:
-            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart +"'"+ i +"'"+ xpathend)))
+    xpathstart = "//label[contains(text(),"
+    xpathend = ")]"
+    for i in folder_list:
+        WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart +"'"+ i +"'"+ xpathend)))

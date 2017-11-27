@@ -12,12 +12,12 @@ folder_list = ["Google Apps - Admin",
                ]
 
 def it_admin_check(driver):
-        #Go to IT Admin dropdown and click on it
-        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
+    #Go to IT Admin dropdown and click on it
+    dashboard_navigate.selectDropdownOption(driver,"IT Admin")
 
-        for label in folder_list:
-            #Build xpath
-            xpathstart = "//label[contains(text(),'"
-            xpathend = "')]"
-            #Run contains check using thestring of the label getting it from the dictionary
-            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
+    for label in folder_list:
+        #Build xpath
+        xpathstart = "//label[contains(text(),'"
+        xpathend = "')]"
+        #Run contains check using thestring of the label getting it from the dictionary
+        WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))

@@ -18,10 +18,10 @@ folder_list = ["Increase Quota to 250MB",
                ]
 
 def network_folder_check(driver):
-        #navigate to network folder
-        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
+    #navigate to network folder
+    dashboard_navigate.selectDropdownOption(driver, "Network Folder")
 
-        xpathstart = "//label[contains(text(),"
-        xpathend = ")]"
-        for i in folder_list:
-            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart +"'"+ i +"'"+ xpathend))).text
+    xpathstart = "//label[contains(text(),"
+    xpathend = ")]"
+    for i in folder_list:
+        WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart +"'"+ i +"'"+ xpathend))).text
