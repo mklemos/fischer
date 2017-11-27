@@ -34,21 +34,19 @@ class test_employee_ATI_WebAlias_sls1231(unittest.TestCase):
         dashboard_navigate.gotoRequestAccess(driver)
         dashboard_navigate.selectIncludeSelf(driver)
 
-        # Select from the dropdown options under "Select resources and permissions"
-        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
+        #Check network folder
         network_folder_check(driver)
 
-        dashboard_navigate.selectDropdownOption(driver, "Official website")
+        #Check offical website
         official_websiteCheck(driver, "employee-ati")
 
-        dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
-        departmental_email_account_check(driver)
-
-        dashboard_navigate.selectDropdownOption(driver, "Personal website")
+        #check personal website
         personal_website_check(driver)
 
+        #Check deparmental email acount
+        departmental_email_account_check(driver)
+
         #maybe doesn't belong here?
-        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
         it_admin_check(driver)
 
 
