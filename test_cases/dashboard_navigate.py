@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.select import Select
+
 
 def gotoRequestAccess(driver):
     #Click on the requests tab
@@ -23,3 +25,15 @@ def selectDropdownOption(driver, optioncontains):
     xpathend = "')]"
     #click on an option via our created xpath
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
+
+
+def navigateDropdownOptions(driver):
+    #Get our first list of options
+    optionDropdown = WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(2) > select.combores" )))
+    optionSelect = Select(optionDropdown)
+    optionTextList = []
+    for option in optionSelect.options:
+        #navigate to that option
+        optionTextList.append(option.text)
+        time.sleep(1)
+
