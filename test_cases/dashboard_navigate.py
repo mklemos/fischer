@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import socket
 import time
+from pprint import pprint
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -28,15 +29,45 @@ def selectDropdownOption(driver, optioncontains):
 
 
 def navigateDropdownOptions(driver):
-    #Get our first list of options
+    #Get our first dropdown
     optionDropdown = WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(2) > select.combores" )))
+    #Create a select from the first dropdown
     optionSelect = Select(optionDropdown)
+    #Create a list for storing the text of each option for the first dropdown
     optionTextList = []
+    #Create a list that we will populate with each option and its suboption to return at the end of this function
+    PermissionProfileList = []
+    #for each options in the dropdwn slect
     for option in optionSelect.options:
-        #navigate to that option
+        #Store that options contains text in a list
         optionTextList.append(option.text)
 
     for optionText in optionTextList:
+        #navigate to each option
         WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//option[contains(text(),'" + optionText + "')]"))).click()
+        #Check to see if we have another dropdown now present
+        #If so lets do this same thing again and get all the dropdown options
+        try:
+            #Try to get the second dropdown to see if it exists
+            optionDropdownTwo = WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(5) > select.combores" )))
+            #Create an select out of the second dropdown
+            optionSelectTwo = Select(optionDropdownTwo)
+            #Create a list for storing the text of each option for the second dropdown
+            optionTextListTwo = []
+            #populate a list of the contains text in each option, ex "Create MySQL accounts"
+            for optiontwo in optionSelectTwo.options:
+                optionTextListTwo.append(optiontwo.text)
 
-    return optionTextList
+            #For each text in the optiontextlist append to the list of lists
+            for optiontexttwo in optionTextListTwo:
+                #Apend to the list the dropdown options avalible in this sub option
+                PermissionProfileList.append([optionText, optiontexttwo])
+                
+        except:
+            #If we cant find that second dropdown we dont have one, so just output the first option and a blank as its child option
+            PermissionProfileList.append([optionText, ""])
+
+        #pprint for debug
+        pprint(PermissionProfileList)
+
+    return PermissionProfileList
