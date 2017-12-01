@@ -39,4 +39,4 @@ def navigateDropdownOptions(driver):
     for optionText in optionTextList:
         WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//option[contains(text(),'" + optionText + "')]"))).click()
 
-
+    return optionTextList
