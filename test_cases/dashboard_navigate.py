@@ -39,8 +39,9 @@ def navigateDropdownOptions(driver):
     PermissionProfileList = []
     #for each options in the dropdwn slect
     for option in optionSelect.options:
-        #Store that options contains text in a list
-        optionTextList.append(option.text)
+        #Store that options contains text in a list, igornoring the "Select" the u means its unicode
+        if(option.text != u"Select"):
+            optionTextList.append(option.text)
 
     for optionText in optionTextList:
         #navigate to each option
@@ -56,7 +57,9 @@ def navigateDropdownOptions(driver):
             optionTextListTwo = []
             #populate a list of the contains text in each option, ex "Create MySQL accounts"
             for optiontwo in optionSelectTwo.options:
-                optionTextListTwo.append(optiontwo.text)
+                #igornoring the "Select" the u means its unicode
+                if(optiontwo.text != u"Select"):
+                    optionTextListTwo.append(optiontwo.text)
 
             #For each text in the optiontextlist append to the list of lists
             for optiontexttwo in optionTextListTwo:
