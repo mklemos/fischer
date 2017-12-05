@@ -69,8 +69,7 @@ def navigateDropdownOptions(driver):
         except:
             #If we cant find that second dropdown we dont have one, so just output the first option and a blank as its child option
             PermissionProfileList.append([optionText, ""])
-
-        #pprint for debug
-        pprint(PermissionProfileList)
-
+        
+    #pprint for debug
+    pprint(PermissionProfileList)
     return PermissionProfileList
