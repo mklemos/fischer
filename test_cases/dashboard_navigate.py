@@ -50,7 +50,7 @@ def navigateDropdownOptions(driver):
         #If so lets do this same thing again and get all the dropdown options
         try:
             #Try to get the second dropdown to see if it exists
-            optionDropdownTwo = WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(5) > select.combores" )))
+            optionDropdownTwo = WebDriverWait(driver, 1).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(5) > select.combores" )))
             #Create an select out of the second dropdown
             optionSelectTwo = Select(optionDropdownTwo)
             #Create a list for storing the text of each option for the second dropdown
