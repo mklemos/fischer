@@ -28,7 +28,7 @@ def selectDropdownOption(driver, optioncontains):
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
 
 
-def navigateDropdownOptions(driver):
+def DropdownOptionsListCreate(driver):
     #Get our first dropdown
     optionDropdown = WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR,"tr > td:nth-of-type(2) > select.combores" )))
     #Create a select from the first dropdown
