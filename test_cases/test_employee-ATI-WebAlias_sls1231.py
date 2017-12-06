@@ -6,6 +6,8 @@ import socket
 import secrets
 import setup_login
 import dashboard_navigate
+from knownPermissions import user_permissions
+from compare_lists import compare_lists
 from network_folder import network_folder_check
 from personal_website import personal_website_check
 from departmental_email_account import departmental_email_account_check
@@ -34,22 +36,17 @@ class test_employee_ATI_WebAlias_sls1231(unittest.TestCase):
         dashboard_navigate.gotoRequestAccess(driver)
         dashboard_navigate.selectIncludeSelf(driver)
 
-        #Check network folder
-        network_folder_check(driver)
+        dynamicPermisons = dashboard_navigate.DropdownOptionsListCreate(driver)
 
-        #Check offical website
-        official_websiteCheck(driver, "employee-ati")
+        knownPermisons = user_permissions["sls1231"]
 
-        #check personal website
-        personal_website_check(driver)
+        boolpermisontest = compare_lists(knownPermisons, dynamicPermisons, "sls1231")
 
-        #Check deparmental email acount
-        departmental_email_account_check(driver)
-
-        #maybe doesn't belong here?
-        it_admin_check(driver)
-
-
+        if boolpermisontest:
+            pass
+        else:
+            assert 2 == 1
+ 
 
     def tearDown(self):
         #log out
