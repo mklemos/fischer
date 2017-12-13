@@ -71,5 +71,6 @@ def DropdownOptionsListCreate(driver):
             PermissionProfileList.append([optionText, ""])
         
     #pprint for debug
+    print("Dynamic dropdown option list Created:")
     pprint(PermissionProfileList)
     return PermissionProfileList
