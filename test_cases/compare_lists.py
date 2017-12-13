@@ -45,8 +45,10 @@ def compare_lists(userpermissionlist, genertedlist, username = ""):
         failedpermissionfile = open(username + 'failedpermissionfile.txt', 'w')
         for item in extrapermissionfound:
             failedpermissionfile.write("Extra: %s\n" % item)
+            print("Extra: %s\n" % item)
         for item in missingpermissionfound:
             failedpermissionfile.write("Missing: %s\n" % item)
+            print("Missing: %s\n" % item)
         return False
     # If we reach here we know that we have two lists that match
     return True
