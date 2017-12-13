@@ -28,7 +28,9 @@ class LoopPasswordChanges(unittest.TestCase):
         # ERROR: Caught exception [ERROR: Unsupported command [getEval | storedVars['people'][storedVars['temp']] | ]]
         #dynamicui:PROFILEID
         # .send_keys(str(search_item))
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@id='dynamicui:PROFILEID']"))).send_keys(user_ids[0])
+        #Switch to the frame our elements are on
+        driver.switch_to.frame("mainFrame")
+        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.ID, 'dynamicui:PROFILEID'))).send_keys(user_ids[0])
         #WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, "html > body > table > tbody > tr > td > table > tbody > tr > td#dynTableDiv > table > tbody > tr > td#td_dynamicui:PROFILEID > input#dynamicui:PROFILEID.textInput120"))).send_keys(user_ids[0])
 
     #
