@@ -27,7 +27,7 @@ def driver_setup():
         driver.set_window_size(1920,1080)
 
         return driver
-    
+
     else:
         driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', desired_capabilities=DesiredCapabilities.FIREFOX) #dw-autotest-dev or localhost
 
@@ -47,6 +47,17 @@ def fischer_login(driver, user_name):
     #Sleep for a second
     time.sleep(1)
 
+def fischer_admin_login(driver, user_name):
+    #Go to fischer admin loging
+    driver.get("https://idm-prov-dev.humboldt.edu/identity/admin/logon.html")
+    #input User
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@id='userIDField']"))).send_keys(str(user_name))
+    #input Password
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@id='passwordField']"))).send_keys(secrets.userpass[str(user_name)])
+    #click sign in
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@id='loginBtn']"))).click()
+    #Sleep for a second
+    time.sleep(1)
 
 def fischer_logout(driver):
     #Signout
