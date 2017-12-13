@@ -51,6 +51,7 @@ def compare_lists(userpermissionlist, genertedlist, username = ""):
             print("Missing: %s\n" % item)
         return False
     # If we reach here we know that we have two lists that match
+    print("No Missing or Extra Dropdowns Found")
     return True
 
 #debugging code
