@@ -64,3 +64,9 @@ def fischer_logout(driver):
     WebDriverWait(driver, 60).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[@name='bannerform:logoutlink']"))).click()
     #Sleep for a second to let singout happen
     time.sleep(1)
+
+def fischer_admin_logout(driver):
+    #Signout
+    WebDriverWait(driver, 60).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@title='Logout']"))).click()
+    #Sleep for a second to let singout happen
+    time.sleep(1)
