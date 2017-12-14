@@ -27,6 +27,33 @@ def selectDropdownOption(driver, optioncontains):
     #click on an option via our created xpath
     WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
 
+def selectCheckbox(driver, optioncontains):
+
+    xpathstart = "//label[contains(text(),'"
+    xpathend = "')]"
+    #click on checkbox with the title designated
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
+
+def selectDatafield(driver, optioncontains):
+
+    xpathstart = "//*[contains(text(),'"
+    xpathend = "')]"
+    #click on checkbox with the title designated
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
+
+def enterTextInDatafield(driver, optioncontains, texttosend):
+
+    xpathstart = "//*[contains(text(),'"
+    xpathend = "')]"
+    #click on checkbox with the title designated
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).send_keys(texttosend)
+
+def clickButton(driver, optioncontains):
+
+    xpathstart = "//*[contains(text(),'"
+    xpathend = "')]"
+    #click on checkbox with the title designated
+    WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + optioncontains +  xpathend))).click()
 
 def DropdownOptionsListCreate(driver):
     #Get our first dropdown
@@ -65,11 +92,11 @@ def DropdownOptionsListCreate(driver):
             for optiontexttwo in optionTextListTwo:
                 #Apend to the list the dropdown options avalible in this sub option
                 PermissionProfileList.append([optionText, optiontexttwo])
-                
+
         except:
             #If we cant find that second dropdown we dont have one, so just output the first option and a blank as its child option
             PermissionProfileList.append([optionText, ""])
-        
+
     #pprint for debug
     print("Dynamic dropdown option list Created:")
     pprint(PermissionProfileList)
