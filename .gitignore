@@ -1,7 +1,2 @@
-test_cases/setup_login.pyc
-test_cases/secrets.pyc
-test_cases/dashboard_navigate.pyc
-test_cases/.cache/v/cache/lastfailed
-test_cases/__pycache__/test_initial_steps.cpython-27-PYTEST.pyc
-test_cases/__pycache__/test_a_setup_and_teardown.cpython-27-PYTEST.pyc
-test_cases/__pycache__/official_website.cpython-27-PYTEST.pyc
+*.pyc
+.vscode/settings.json

@@ -3,9 +3,11 @@ import unittest
 import time
 import os.path
 import socket
-import setup_login
 import secrets
+import setup_login
 import dashboard_navigate
+from knownPermissions import user_permissions
+from compare_lists import compare_lists
 from network_folder import network_folder_check
 from personal_website import personal_website_check
 from departmental_email_account import departmental_email_account_check
@@ -18,13 +20,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
-class test_initial_steps(unittest.TestCase):
+class test_employee_ATI_WebAlias_sls1231(unittest.TestCase):
 
     def setUp(self):
         driver = setup_login.driver_setup()
         self.driver = driver
 
-    def test_initial_steps(self):
+    def test_employee_ATI_WebAlias_sls1231(self):
         # Set drivers from selenium framework
         driver = self.driver
         self.driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
@@ -34,21 +36,17 @@ class test_initial_steps(unittest.TestCase):
         dashboard_navigate.gotoRequestAccess(driver)
         dashboard_navigate.selectIncludeSelf(driver)
 
-        # Select from the dropdown options under "Select resources and permissions"
-        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
-        network_folder_check(driver)
+        dynamicPermisons = dashboard_navigate.DropdownOptionsListCreate(driver)
 
-        dashboard_navigate.selectDropdownOption(driver, "Official website")
-        official_websiteCheck(driver)
+        knownPermisons = user_permissions["sls1231"]
 
-        dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
-        departmental_email_account_check(driver)
+        boolpermisontest = compare_lists(knownPermisons, dynamicPermisons, "sls1231")
 
-        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
-        it_admin_check(driver)
-
-        dashboard_navigate.selectDropdownOption(driver, "Personal website")
-        personal_website_check(driver)
+        if boolpermisontest:
+            pass
+        else:
+            assert 2 == 1
+ 
 
     def tearDown(self):
         #log out

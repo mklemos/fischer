@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 import unittest
+import pprint
 import time
+import json
 import os.path
 import socket
-import setup_login
 import secrets
+import setup_login
 import dashboard_navigate
 from network_folder import network_folder_check
 from personal_website import personal_website_check
@@ -18,13 +20,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
-class test_initial_steps(unittest.TestCase):
+class test_get_dropdownlist(unittest.TestCase):
 
     def setUp(self):
         driver = setup_login.driver_setup()
         self.driver = driver
 
-    def test_initial_steps(self):
+    def test_employee_ATI_WebAlias_sls1231(self):
         # Set drivers from selenium framework
         driver = self.driver
         self.driver.get("https://idm-prov-dev.humboldt.edu/identity/self-service/hsu/login.jsf")
@@ -34,21 +36,29 @@ class test_initial_steps(unittest.TestCase):
         dashboard_navigate.gotoRequestAccess(driver)
         dashboard_navigate.selectIncludeSelf(driver)
 
-        # Select from the dropdown options under "Select resources and permissions"
-        dashboard_navigate.selectDropdownOption(driver, "Network Folder")
-        network_folder_check(driver)
+        # #Check network folder
+        # network_folder_check(driver)
+        #
+        # #Check offical website
+        # official_websiteCheck(driver, "employee-ati")
+        #
+        # #check personal website
+        # personal_website_check(driver)
+        #
+        # #Check deparmental email acount
+        # departmental_email_account_check(driver)
+        #
+        # #maybe doesn't belong here?
+        # it_admin_check(driver)
 
-        dashboard_navigate.selectDropdownOption(driver, "Official website")
-        official_websiteCheck(driver)
+        lister = dashboard_navigate.navigateDropdownOptions(driver)
 
-        dashboard_navigate.selectDropdownOption(driver,"Departmental Email Account")
-        departmental_email_account_check(driver)
+        #lister_json = json.dumps(lister)
+        #pprint.pprint(lister_json)
 
-        dashboard_navigate.selectDropdownOption(driver,"IT Admin")
-        it_admin_check(driver)
-
-        dashboard_navigate.selectDropdownOption(driver, "Personal website")
-        personal_website_check(driver)
+        thefile = open('lister.txt', 'w')
+        for item in lister:
+            thefile.write("%s\n" % item)
 
     def tearDown(self):
         #log out

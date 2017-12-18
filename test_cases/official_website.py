@@ -11,29 +11,38 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-offical_websiteList = ["Create website", "Add a developer", "Create MySQL accounts", "Reset website permissions"]
+offical_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Create MySQL accounts":["MySQL Account - Prod", "MySQL Account - Dev Server"], "Reset website permissions":["Production Website - Permission Reset"]}
 
+non_employee_websiteDict = {"Create website":["Official website"], "Add a developer":[], "Reset website permissions":["Production Website - Permission Reset"]}
 
-def official_websiteCheck(driver):
-        dashboard_navigate.gotoRequestAccess(driver)
+def getPermisionDict(usertype):
+    usertype = str(usertype).lower()
+    if usertype == "employee-ati":
+        return offical_websiteDict
+    elif usertype == "non-employee":
+        return non_employee_websiteDict
 
-        dashboard_navigate.selectIncludeSelf(driver)
+def official_websiteCheck(driver, usertype):
 
-        try:
-            #Try to select offical website
-            dashboard_navigate.selectDropdownOption(driver, "Official website")
-        except:
-            #We cant find offical website so something is broken
-            assert 2 == 1
+    Web_dict = getPermisionDict(usertype)
 
-        for permision in offical_websiteList:
-            
-            try:
-                #Try to select permison
-                dashboard_navigate.selectDropdownOption(driver, permision)
-            except:
-                #We cant find permison in dropdown so fail the test
-                assert 2 == 1
+    #Navigate to "Ofical website"
+    dashboard_navigate.selectDropdownOption(driver, "Official website")
+
+    #Try to select offical website
+    #dashboard_navigate.selectDropdownOption(driver, "Official website")
+    #For each permison(Option)
+    for permision in Web_dict:
+        #Try to select permison
+        dashboard_navigate.selectDropdownOption(driver, permision)
+        #Make sure each label exists on the page once we select the permision if the permison has labels
+        for label in Web_dict[permision]:
+            #Build xpath
+            xpathstart = "//label[contains(text(),'"
+            xpathend = "')]"
+            time.sleep(1)
+            #Run contains check using thestring of the label getting it from the dictionary
+            WebDriverWait(driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, xpathstart + label + xpathend)))
 
 
 
@@ -47,7 +56,12 @@ class test_c_Test(unittest.TestCase):
         setup_login.fischer_login(self.driver, "sls1231")
 
     def test_c_Test(self):
-       official_websiteCheck(self.driver)
+        dashboard_navigate.gotoRequestAccess(self.driver)
+        dashboard_navigate.selectIncludeSelf(self.driver)
+
+        dashboard_navigate.selectDropdownOption(self.driver, "Official website")
+
+        official_websiteCheck(self.driver, "non-employee")
 
 
     def tearDown(self):

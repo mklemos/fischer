@@ -32,4 +32,24 @@ SystemTree.create_node("MySQL Account - Dev Server", parent="Create MySQL accoun
 SystemTree.create_node("Reset website permissions", "Reset website permissions", parent="Official Website")
 SystemTree.create_node("Production Website - Permission Reset", parent="Reset website permissions")
 
+
+#Personal Website
+SystemTree.create_node("Personal website", "Personal Website", parent="System")
+SystemTree.create_node("Personal website - MySQL", parent="Personal Website")
+
+#Departmental Email Account
+SystemTree.create_node("Departmental Email Account", "Departmental Email Account", parent="System")
+SystemTree.create_node("Departmental Email Account", parent="Departmental Email Account") #Leaf node for the check
+
+#Test
+SystemTree.create_node("Test", "Test", parent="System")
+SystemTree.create_node("Test Role", parent="Test")
+SystemTree.create_node("TestRole2", parent="Test")
+
+#IT Admin
+SystemTree.create_node("IT Admin", "IT Admin", parent="System")
+SystemTree.create_node("Google Apps - Admin", parent="IT Admin")
+SystemTree.create_node("Active Directory - Admin", parent="IT Admin")
+SystemTree.create_node("LDAP bnd Account", parent="IT Admin")
+
 SystemTree.show(line_type="ascii-em")
